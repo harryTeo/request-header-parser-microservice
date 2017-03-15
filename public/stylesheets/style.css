@@ -1,16 +1,12 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
 }
 
-ol {
-  list-style-type: none;
-}
-
-li {
-	padding: 7px 0;
+h1 {
+	margin-bottom: 25px;
 }

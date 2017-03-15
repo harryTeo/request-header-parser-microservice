@@ -1,19 +1,9 @@
 <div class="container">
-	<h1>
-	  API Basejump: Timestamp microservice
-	</h1>
-	<blockquote>
-    User stories:
-    <ol>
-    	<li>1) I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016)</li>
-    	<li>2) If it does, it returns both the Unix timestamp and the natural language form of that date.</li>
-    	<li>3) If it does not contain a date or Unix timestamp, it returns null for those properties.</li>
-    </ol>
-	</blockquote>
-	<h3>Example usage:</h3>
-	<code>https://harryteo-timestamp-ms.herokuapp.com/December%2015,%202015</code><br>
-	<code>https://harryteo-timestamp-ms.herokuapp.com/1450137600</code>
+	<h1>Request Header Parser Microservice</h1>
+
+	<p>Get the IP address, language and operating system of your browser at:</p>
+	<p><a href="https://harryteo-request-header-parser-ms.herokuapp.com/api/whoami">https://harryteo-request-header-parser-ms.herokuapp.com/api/whoami</a></p>
+
 	<h3>Example output:</h3>
-	<code>{"unix":1450137600, "natural":"December 15, 2015"}</code><br><br>
-	<code>{"unix":null, "natural":null}</code>
+	<code>{"ipaddress":"x.x.x.x","language":"en-GB","software":"Windows NT 10.0; WOW64"}</code>
 </div>

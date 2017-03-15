@@ -1,42 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var moment = require('moment');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get('/:date', function(req, res, next) {
-	var inputDate = req.params.date;
-	var resDate;
-	var resObject;
+router.get('/api/whoami', function(req, res, next) {
 
-  if(isNaN(+inputDate)) {
-    if (moment(inputDate, ["MMMM D, YYYY", "MMMM D,YYYY", "MMMM D YYYY", "MMMM-D-YYYY", "MMM D, YYYY", "MMM D,YYYY", "MMM D YYYY", "MMM-D-YYYY", "M D YYYY", "M-D-YYYY", "D M YYYY", "D-M-YYYY", "D MMMM YYYY", "D MMM YYYY", "D MMMM, YYYY", "D MMMM,YYYY", "D MMM, YYYY", "D MMM,YYYY", "D, MMM YYYY", "D,MMM YYYY", "D, MMMM YYYY", "D,MMMM YYYY", "D-MMMM-YYYY", "D-MMM-YYYY", "YYYY MMMM D", "YYYY MMM D", "YYYY-MMMM-D", "YYYY-MMM-D", "YYYY, MMMM D", "YYYY,MMMM D", "YYYY, MMM D", "YYYY,MMM D", "YYYY, M D", "YYYY,M D", "YYYY, D MMMM", "YYYY,D MMMM", "YYYY, D MMM", "YYYY,D MMM", "YYYY, D M", "YYYY,D M", "YYYY M D", "YYYY-M-D", "YYYY D M", "YYYY-D-M", "YYYY D MMM", "YYYY D MMMM", "YYYY-D-MMM", "YYYY-D-MMMM"], true).isValid()) {
-      resDate = moment(inputDate, ["MMMM D, YYYY", "MMMM D,YYYY", "MMMM D YYYY", "MMMM-D-YYYY", "MMM D, YYYY", "MMM D,YYYY", "MMM D YYYY", "MMM-D-YYYY", "M D YYYY", "M-D-YYYY", "D M YYYY", "D-M-YYYY", "D MMMM YYYY", "D MMM YYYY", "D MMMM, YYYY", "D MMMM,YYYY", "D MMM, YYYY", "D MMM,YYYY", "D, MMM YYYY", "D,MMM YYYY", "D, MMMM YYYY", "D,MMMM YYYY", "D-MMMM-YYYY", "D-MMM-YYYY", "YYYY MMMM D", "YYYY MMM D", "YYYY-MMMM-D", "YYYY-MMM-D", "YYYY, MMMM D", "YYYY,MMMM D", "YYYY, MMM D", "YYYY,MMM D", "YYYY, M D", "YYYY,M D", "YYYY, D MMMM", "YYYY,D MMMM", "YYYY, D MMM", "YYYY,D MMM", "YYYY, D M", "YYYY,D M", "YYYY M D", "YYYY-M-D", "YYYY D M", "YYYY-D-M", "YYYY D MMM", "YYYY D MMMM", "YYYY-D-MMM", "YYYY-D-MMMM"]);
-    }
-  	else {
-      resDate = moment.invalid();
-    }
-  } 
-  else {
-    resDate = moment(inputDate, "X");
-  }
+  var ipaddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+  var userAgent = req.headers["user-agent"];
+  var software = userAgent.substring(userAgent.indexOf('(')+1, userAgent.indexOf(')'));
+  var languageList = req.headers["accept-language"];
+  var language = languageList.substring(0, languageList.indexOf(','));
+  var resObject = {
+    ipaddress: ipaddress,
+    language: language,
+    software: software
+  };
 
-  if(resDate.isValid()) {
-    resObject = {
-      unix: Number(resDate.format("X")),
-      natural: resDate.format("MMMM D, YYYY")
-    };
-  } 
-  else {
-    resObject = {
-      unix: null,
-      natural: null
-    };
-  }
-  
   res.json(resObject);
 
 });
