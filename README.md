@@ -6,4 +6,4 @@ Developed for the [freeCodeCamp](https://www.freecodecamp.com/) Back End Develop
 Get the IP address, language and operating system of your browser.
 
 ### Live Site
-https://harryteo-request-header-parser-ms.herokuapp.com/api/whoami
+https://harryteo-header-parser-ms.herokuapp.com/api/whoami
