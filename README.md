@@ -4,6 +4,7 @@ Developed for the [freeCodeCamp](https://www.freecodecamp.com/) Back End Develop
 
 ### User Story
 Get the IP address, language and operating system of your browser.
+
 Example output: {"ipaddress":"x.x.x.x","language":"en-GB","software":"Windows NT 10.0; WOW64"}
 
 ### Live Site
